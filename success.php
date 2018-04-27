@@ -28,7 +28,7 @@ if(isset($_SESSION['message']))
         
         <p><?=$success?></p>
         
-        <a href="adminlogin.php"><button class="button button-block">Admin Home</button></a>
+        <a href="adminpage.php"><button class="button button-block">Admin Home</button></a>
     
     </div>
 

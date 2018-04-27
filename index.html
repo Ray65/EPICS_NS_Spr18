@@ -1,15 +1,46 @@
-<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hartford Hub</title>
+    <title>Welcome to the Hub</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-Hello World!    
-</body>
+
+    <div class="form">
+
+        <div id="login">
+            
+            <h1>Welcome Back!</h1>
+
+            <form action="login.php" method="post" autocomplete="off">
+
+                <div class="field-wrap">
+                
+                    <input type="email" style="max-height: 38px;" autocomplete="off" name="email" placeholder="Email Address" required>
+                    
+                </div>
+            
+                <button class="button button-block" name="login">Check In</button>
+
+            </form>
+
+        </div>
+
+        <br>
+        <hr>
+        <br>
+        
+        <h1>Leaving?</h1>
+        
+        <a href="checkout.php"><button class="button button-block" name="checkout">Check Out</button></a>
+        
+    </div>
     
+
+</body>
+
 </html>

@@ -2,33 +2,50 @@
 
 require_once 'db.php';
 
-$id = $_POST["id"];
-$first_name = $_POST['first_name'];
-$last_name = $_POST['last_name'];
+if ( $_SESSION['logged_in'] != 1 ) {
+	$_SESSION['message'] = "You must log in";
+    header("location: error.php");  
+    exit(0);  
+}
+
 $email = $_POST['email'];
-$user_type = $_POST['user_type'];
-$pass = $_POST['pass'];
-$location = $_POST['location'];
+
 $result = $mysqli->query('SELECT * FROM '. DB .".users WHERE email= '$email'");
 $user = $result->fetch_assoc();
 
 if ($result->num_rows!=0) {
     $_SESSION['message'] = 'User with this email already exists!';
     header("location: error.php");
+    exit(0);
 }
 
-$update = 'INSERT INTO '. DB .".users (id, first_name, last_name, email, password, user_type, location) 
-                                VALUES ($id, '$first_name', '$last_name', '$email', '$pass', '$user_type', '$location')";
+$id = $_POST["id"];
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
+$admin = $_POST['admin'];
+$pass = NULL;
 
-if ($mysqli->query($update))
+if ($admin)
 {
-    $_SESSION['message'] = 'New user added!';
+    //Hashes the password so it can be safely stored in the database
+    $pass = password_hash($_POST['password'], PASSWORD_BCRYPT);
+}
+
+//Add the user to the main table and create a unique login table
+$update =   'INSERT INTO '. DB .".users (id, first_name, last_name, email, password, admin, logged_in) 
+                                    VALUES ('$id', '$first_name', '$last_name', '$email', '$pass', $admin, b'0'); " .
+            'CREATE TABLE '. DB .".`$id` (`$id` DATETIME);";
+
+if ($mysqli->multi_query($update)){
+    $_SESSION['New user added'];
     header("location: success.php"); 
-} 
-else 
+    exit(0);
+}
+else
 {
     $_SESSION['message'] = 'Registration failed!';
     header("location: error.php"); 
+    exit(0);
 }
 
 ?>

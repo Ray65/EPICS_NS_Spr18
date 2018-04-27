@@ -23,7 +23,7 @@ session_destroy();
               
           <p>You were here for <?=$hours->h?> hours and <?=$hours->i?> minutes</p>
           
-          <a href="main.php"><button class="button button-block">Home</button></a>
+          <a href="index.html"><button class="button button-block">Home</button></a>
 
     </div>
     

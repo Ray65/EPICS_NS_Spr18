@@ -30,7 +30,7 @@ session_destroy();
     
         <p><?=$error?></p>
         
-        <a href="main.php"><button class="button button-block">Home</button></a>
+        <a href="index.html"><button class="button button-block">Home</button></a>
     
     </div>
     

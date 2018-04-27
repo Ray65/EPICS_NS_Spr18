@@ -1,21 +1,15 @@
-<?php
+<?php 
 
 require_once 'db.php';
 
 if ( $_SESSION['logged_in'] != 1 ) {
-	$_SESSION['message'] = "You must log in before viewing your profile page!";
-	header("location: error.php");    
+    $_SESSION['message'] = "You must log in before viewing your profile page!";
+    header("location: error.php");   
+    exit(0); 
 }
 
-$first_name = $_SESSION['first_name'];
-$last_name = $_SESSION['last_name'];
-$email = $_SESSION['email'];
-$time_stamp = date("Y-m-d H:i:s", time());
-
-$update = 'UPDATE '. DB . ".users SET login_time = '$time_stamp' WHERE email =  '$email'";
-$mysqli->query($update);
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,27 +24,35 @@ $mysqli->query($update);
 <body>
 
     <div class="form">
+    
+        <div id="login">
+            
+            <h1>Go to the admin page</h1>
 
-        <h1>Welcome Admin</h1>
+            <form action="pass.php" method="post" autocomplete="off">
+
+                <div class="field-wrap">
+                
+                    <input type="password" style="max-height: 38px;" autocomplete="off" name="pass" placeholder="Password" required>
+                    
+                </div>
+            
+                <button class="button button-block" name="login">Admin Page</button>
+
+            </form>
+
+        </div>
+
+        <br>
+        <hr>
+        <br>
+
+        <h1>Or</h1>
         
-        <h2><?="$first_name $last_name"?></h2>
-        <br>
-        <br>
-        <a href="add_new.php"><button class="button button-block" name="add_new">Add New</button></a>
-        <br>
-        <a href="modify.php"><button class="button button-block" name="modify">Modify</button></a>
-        <br>
-        <a href="delete.php"><button class="button button-block" name="delete">Delete</button></a>
-        <br>
-        <a href="view.php"><button class="button button-block" name="view">View All Users</button></a>
-        <br>
-        <a href="view_admin.php"><button class="button button-block" name="view">View All Admins</button></a>
-        <br>
-        <a href="main.php"><button class="button button-block" name="logout">Log Out</button></a>
-        <br>
-        
+        <a href="check_in.php"><button class="button button-block" name="checkin">Check In</button></a>
 
     </div>
+    
 
 </body>
 

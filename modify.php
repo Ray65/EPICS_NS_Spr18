@@ -4,7 +4,8 @@ require_once 'db.php';
 
 if ( $_SESSION['logged_in'] != 1 ) {
 	$_SESSION['message'] = "You must log in";
-	header("location: error.php");    
+    header("location: error.php");   
+    exit(0); 
 }
 
 ?>
@@ -40,7 +41,7 @@ if ( $_SESSION['logged_in'] != 1 ) {
         </div>
 
         <hr>
-        <a href="adminlogin.php"><button class="button button-block" name="back">Back</button></a>
+        <a href="adminpage.php"><button class="button button-block" name="back">Back</button></a>
         
     </div>
 
